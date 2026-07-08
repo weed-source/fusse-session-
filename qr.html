@@ -1,0 +1,33 @@
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    let timeleft = 30;
+
+    const progressBar = document.getElementById("progressBar");
+    const main = document.getElementById("main");
+    const legend = document.getElementById("legend");
+
+    // Asire nou eleman an egziste anvan nou kòmanse
+    if (!progressBar) return; 
+    progressBar.max = 30; // Bay bar la yon maksimòm
+
+    const downloadTimer = setInterval(function () {
+
+        if (timeleft <= 0) {
+            clearInterval(downloadTimer);
+
+            progressBar.remove();
+            if (main) main.innerHTML = "QR Expired! Please reload";
+            if (legend) legend.innerHTML = "";
+
+            return;
+        }
+
+        progressBar.value = timeleft; // Valè a ap desann soti 30 rive 1
+        timeleft--;
+
+    }, 1000);
+
+});
+</script>
+7
